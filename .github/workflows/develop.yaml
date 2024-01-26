@@ -1,10 +1,10 @@
-name: CI
+name: Continous Integration
 
 on:
   push:
-    branches: [develop]
+    branches: [gh-page]
   pull_request:
-    branches: [develop]
+    branches: [gh-page]
 
 jobs:
   lint-and-build:
