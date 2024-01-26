@@ -55,3 +55,11 @@ export const CustomColor: Story = {
         label: 'Hello World'
     }
 }
+
+export const CustomBackgroundColor: Story = {
+    args: {
+        label: 'Hello World',
+        fontColor:'white',
+        backgroundColor:'blue'
+    }
+}
