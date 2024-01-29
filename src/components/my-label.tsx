@@ -4,7 +4,7 @@ import './my-label.css'
  * color is a string text-primary | text-secondary | text-tertiary
  * fontColor con un selecto de color
 */ 
-interface Props {
+export interface Props {
   /**
    * Label to display
    */
