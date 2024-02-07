@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { MyLabel } from "../components/my-label";
+import { MyLabel , type Props} from "../components/my-label";
 
-const meta ={ // meta es la info e la pgina que va a regir al edior visual
+const meta: Meta<Props> ={ // meta es la info e la pgina que va a regir al edior visual
     title :'Example/My label', // aca indico sonde quiero que se muestre
     component: MyLabel,
     tags:['autodocs'], // esto es para que se muestre en la pagina de autodocs

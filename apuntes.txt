@@ -18,3 +18,11 @@ CONFIG
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+
+
+  7/7 
+
+
+  Preparando el publis a npm 
+
+  // elimino el build de vite  del package.json porque no quiero buildear un app en vite si no que quiero disponibiliza lo componentes como modulos . 
