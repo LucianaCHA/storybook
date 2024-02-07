@@ -1,0 +1,16 @@
+version: '3'
+services:
+  my-storybook:
+    build: .
+    ports:
+      - "6006:6006"
+
+# bash
+# docker-compose up --build
+# Este comando buscará el archivo docker-compose.yml en el directorio en que esté parada , construirá la imagen Docker según las instrucciones del Dockerfile, y luego ejecutará un contenedor basado en esa imagen. El contenedor se ejecutará en el puerto 3000 y expondrá la aplicación Node.js.
+
+# abrir el shell 
+# docker-compose exec my-storybook bash
+
+#para instalar cosas tambien puede ser 
+# docker-compose exec my-storybook npm install --save-dev np

@@ -17,7 +17,7 @@
   "author": "Luciana Chamorro",
   "repository": {
     "type": "git",
-    "url": "https;//TODO..."
+    "url": "https://github.com/LucianaCHA/storybook"
   },
   "files": [
     "dist"
@@ -28,14 +28,19 @@
     ]
   },
   "scripts": {
-    "dev": "npm run storybook",
+    "start": "npm run storybook",
     "build": "npm run clean-dist && tsc && npm run copy-static-files",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "clean-dist": "rimraf dist/",
-    "copy-static-files": "copyfiles -u 1 src/**/*.css dist/"
+    "copy-static-files": "copyfiles -u 1 src/**/*.css dist/",
+    "push:npm": "np"
+  },
+  "resolutions": {
+    "wrap-ansi": "7.0.0",
+    "string-width": "4.1.0"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -63,8 +68,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.5",
-    "storybook": "^7.2.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "np": "^9.2.0",
+    "npm": "^10.4.0",
+    "storybook": "^7.6.12"
   }
 }
