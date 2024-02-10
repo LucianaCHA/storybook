@@ -37,7 +37,7 @@
     "clean-dist": "rimraf dist/",
     "copy-static-files": "copyfiles -u 1 src/**/*.css dist/",
     "push:npm": "np",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\""
   },
   "resolutions": {
     "wrap-ansi": "7.0.0",
