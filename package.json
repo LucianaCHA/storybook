@@ -5,6 +5,9 @@
   "type": "module",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/components/index.js"
+  },
   "keywords": [
     "react",
     "storybook",
