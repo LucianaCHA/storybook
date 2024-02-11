@@ -5,9 +5,6 @@
   "type": "module",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "exports": {
-    ".": "./dist/components/index.js"
-  },
   "keywords": [
     "react",
     "storybook",
@@ -38,8 +35,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "clean-dist": "rimraf dist/",
-    "copy-static-files": "copyfiles -u 1 src/**/*.css dist/",
-    "push:npm": "np",
+    "copy-static-files": "copyfiles -u 1 src/**/*.css dist/ && copy -r package.json dist/",
+    "push:npm": "cd dist && np",
     "test": "echo \"Error: no test specified\"",
     "check-versions": "npx npm-check-updates -u"
   },
@@ -77,9 +74,7 @@
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.5",
     "typescript": "^5.3.3",
-    "vite": "^5.1.1"
-  },
-  "dependencies": {
+    "vite": "^5.1.1",
     "np": "^9.2.0",
     "npm": "^10.4.0",
     "storybook": "^7.6.14"
