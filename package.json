@@ -37,7 +37,7 @@
     "build-storybook": "storybook build",
     "clean-dist": "rimraf dist/",
     "copy-static-files": "copyfiles -u 1 src/**/*.css dist/ && copyfiles -f package.json dist/",
-    "push:npm": "cd dist && np",
+    "push:npm": "npm run build && cd dist && np",
     "test": "echo \"Error: no test specified\"",
     "check-versions": "npx npm-check-updates -u"
   },
