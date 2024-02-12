@@ -3,8 +3,8 @@
   "private": false,
   "version": "0.0.1-rc1.8",
   "type": "module",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "components/index.js",
+  "typings": "components/index.d.ts",
   "keywords": [
     "react",
     "storybook",
@@ -20,7 +20,7 @@
     "url": "https://github.com/LucianaCHA/storybook"
   },
   "files": [
-    "dist"
+    "components"
   ],
   "release": {
     "branches": [
