@@ -20,7 +20,9 @@
     "url": "https://github.com/LucianaCHA/storybook"
   },
   "files": [
-    "dist"
+    "dist/components",
+    "dist/index.d.ts",
+    "dist/index.js"
   ],
   "release": {
     "branches": [
@@ -29,14 +31,14 @@
   },
   "scripts": {
     "start": "npm run storybook",
-    "build": "npm run clean-dist && tsc && npm run copy-static-files",
+    "build": "npm run clean-dist && tsc",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "clean-dist": "rimraf dist/",
-    "copy-static-files": "copyfiles -u 1 src/**/*.css dist/ && copyfiles -f package.json dist/",
-    "push:npm": "npm run build && cd dist && np --no-publish",
+    "copy-static-files": "copyfiles -u 1 src/**/*.css dist/",
+    "push:npm": "npm run build && np",
     "test": "echo \"Error: no test specified\"",
     "check-versions": "npx npm-check-updates -u"
   },
