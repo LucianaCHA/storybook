@@ -36,7 +36,7 @@
     "build-storybook": "storybook build",
     "clean-dist": "rimraf dist/",
     "copy-static-files": "copyfiles -u 1 src/**/*.css dist/ && copyfiles -f package.json dist/",
-    "push:npm": "npm run build && cd dist && np",
+    "push:npm": "npm run build && cd dist && np --no-publish",
     "test": "echo \"Error: no test specified\"",
     "check-versions": "npx npm-check-updates -u"
   },
@@ -70,12 +70,12 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-storybook": "^0.6.15",
+    "np": "^9.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.5",
+    "storybook": "^7.6.14",
     "typescript": "^5.3.3",
-    "vite": "^5.1.1",
-    "np": "^9.2.0",
-    "storybook": "^7.6.14"
+    "vite": "^5.1.1"
   }
 }
