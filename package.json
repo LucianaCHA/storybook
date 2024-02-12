@@ -2,7 +2,6 @@
   "name": "lc-custom-components",
   "private": false,
   "version": "0.0.1-rc1.10",
-  "type": "module",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "keywords": [
