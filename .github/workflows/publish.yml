@@ -32,7 +32,12 @@ jobs:
         run: npm run build
 
       - name: Publish to npm
-        run: npm publish
-          echo "Published to npm successfully"
+        run: |
+          if npm publish; then
+            echo "Published to npm"
+          else
+            echo "Failed to publish to npm"
+            exit 1
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
