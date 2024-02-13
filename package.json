@@ -1,7 +1,7 @@
 {
   "name": "lc-custom-components",
   "private": false,
-  "version": "0.0.3-0",
+  "version": "0.0.3-1",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "keywords": [
@@ -38,7 +38,7 @@
     "push:npm": "npm run build && np",
     "test": "echo \"Error: no test specified\"",
     "check-versions": "npx npm-check-updates -u",
-    "ci-publish": "npm run build && np --no-yarn"
+    "publish": "npm run publish"
   },
   "resolutions": {
     "wrap-ansi": "7.0.0",
