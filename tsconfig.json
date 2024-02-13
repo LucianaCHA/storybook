@@ -8,6 +8,7 @@
     "allowJs": true,
     "emitDeclarationOnly": false,
     "declarationMap": false,
+    "types": ["react"],
 
 
     "useDefineForClassFields": true,
