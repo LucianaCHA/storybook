@@ -33,5 +33,6 @@ jobs:
 
       - name: Publish to npm
         run: npm publish
+          echo "Published to npm successfully"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
