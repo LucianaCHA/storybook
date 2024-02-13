@@ -32,7 +32,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build -o docs",
     "clean-dist": "rimraf dist/",
     "copy-static-files": "copyfiles -u 1 src/**/*.css dist/",
     "push:npm": "npm run build && np",
