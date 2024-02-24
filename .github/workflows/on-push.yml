@@ -30,12 +30,11 @@ jobs:
             - name: Add Chromatic review link to pull request
               if: always()
               uses: unsplash/comment-on-pr@v1.3.0
-              with:
-                message: |
-                  Chromatic review has been published. [View Chromatic review](https://www.chromatic.com/builds/${{ steps.chromatic-publish.outputs.buildId }})
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            
+              with:
+                msg: |
+                  Chromatic review has been published. [View Chromatic review](https://www.chromatic.com/builds/${{ steps.chromatic-publish.outputs.buildId }})           
             - name: Run lint
               run: npm run lint
       
