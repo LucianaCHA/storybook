@@ -33,6 +33,7 @@ jobs:
               if: always()
               uses: unsplash/comment-on-pr@v1.3.0
               env:
+                echo "GIT HUB TOKEN: ${{ secrets.GITHUB_TOKEN }}"
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                 msg: |
