@@ -3,6 +3,11 @@ on :
   push : 
     branches : 
       -   feature/*
+permissions:
+  issues: write
+  contents: read
+  statuses: read
+  pull-requests: write
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -30,16 +35,14 @@ jobs:
                 projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN}}
             
             - name: Add Chromatic review link to pull request
+ 
               if: always()
-              run: |
-                echo "GITHUB TOKEN: ${{ secrets.GITHUB_TOKEN }}"
-                exit 1
-              # uses: unsplash/comment-on-pr@v1.3.0
+              uses: unsplash/comment-on-pr@v1.3.0
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              # with:
-              #   msg: |
-              #     Chromatic review has been published. [View Chromatic review](https://www.chromatic.com/builds/${{ steps.chromatic-publish.outputs.buildId }})           
+              with:
+                msg: |
+                  Chromatic review has been published. [View Chromatic review](https://www.chromatic.com/builds/${{ steps.chromatic-publish.outputs.buildId }})           
             - name: Run lint
               run: npm run lint
       
