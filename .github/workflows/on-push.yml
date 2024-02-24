@@ -29,7 +29,7 @@ jobs:
             
             - name: Add Chromatic review link to pull request
               if: always()
-              uses: unsplash/comment-on-pr-action@v2
+              uses: unsplash/comment-on-pr@v1.3.0
               with:
                 message: |
                   Chromatic review has been published. [View Chromatic review](https://www.chromatic.com/builds/${{ steps.chromatic-publish.outputs.buildId }})
