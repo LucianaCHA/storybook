@@ -45,7 +45,6 @@ jobs:
                 echo "| Component Count | ${{ steps.chromatic.outputs.componentCount }} |" >> $GITHUB_STEP_SUMMARY
                 echo "| Component Changes | ${{ steps.chromatic.outputs.changeCount }} |" >> $GITHUB_STEP_SUMMARY
                 echo "| Failed test | ${{ steps.chromatic.outputs.errorCount }} /${{ steps.chromatic.outputs.testCount }} |" >> $GITHUB_STEP_SUMMARY
-                echo "| Build Time | ${{ steps.chromatic.outputs.buildTime }} |" >> $GITHUB_STEP_SUMMARY
             - name: Add Chromatic review link to pull request
  
               if: always()
