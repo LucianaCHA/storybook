@@ -39,10 +39,10 @@ jobs:
               id: message
               run: |
                 if [[ ${{steps.chromatic.outputs.errorCount }} == '0' ]]; then
-                  message= "All tests passed! 🎉"
+                  message= "All tests passed! 🎉" >> $GITHUB_ENV
                 else
-                  message="Tests failed 🚨"
-                fi >> $GITHUB_ENV
+                  message="Tests failed 🚨" >> $GITHUB_ENV
+                fi
 
             - name: Add Chromatic review link to pull request
               if: always()
