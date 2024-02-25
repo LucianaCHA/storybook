@@ -1,0 +1,54 @@
+name : publish to chromatic
+on : 
+  push : 
+    branches : 
+      -   feature/*
+
+permissions:  
+    issues: write
+    contents: read
+
+
+jobs :
+    install:
+        uses: ./install.yml
+
+    quality-check:
+        uses: ./quality-code.yml
+        
+    chromatic-publish:
+        runs-on: ubuntu-latest
+        needs: [quality-check, install]
+        steps:
+            -   name: Publish to Chromatic
+                id: chromatic
+                uses: chromaui/action@latest
+                with:
+                    projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN}}
+
+            -   name: Custom message
+                id: message
+                run: |
+                    if [[ ${{steps.chromatic.outputs.errorCount }} == '0' ]]; then
+                    echo result = "" >> $GITHUB_ENV
+                    echo message= "All tests passed! 🎉" >> $GITHUB_ENV
+                    else
+                    echo result = ${{steps.chromatic.outputs.errorCount }} >> $GITHUB_ENV
+                    echo message="Tests failed 🚨" >> $GITHUB_ENV
+                    fi
+
+            -   name: Add Chromatic review link to pull request
+                if: always()
+                uses: unsplash/comment-on-pr@v1.3.0
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                with:                
+                    msg: |
+                        ## Chromatic Summary                  
+                        | Results | |
+                        | --- | --- |
+                        | Build Results | [Link to chromatic build](${{ steps.chromatic.outputs.url }}) |
+                        | Storybook Preview | [Link to preview](${{ steps.chromatic.outputs.storybookUrl }}) |
+                        | Component Count | ${{ steps.chromatic.outputs.componentCount }} |
+                        | Component Changes | ${{ steps.chromatic.outputs.changeCount }} |
+                        | Test Results | ${{env.result}} ${{env.message}} |
