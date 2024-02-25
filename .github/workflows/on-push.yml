@@ -50,7 +50,7 @@ jobs:
                   | Storybook Preview | [Link to preview](${{ steps.chromatic.outputs.storybookUrl }}) |
                   | Component Count | ${{ steps.chromatic.outputs.componentCount }} |
                   | Component Changes | ${{ steps.chromatic.outputs.changeCount }} |
-                  | Test Results | {{ steps.steps.chromatic.outputs.errorCount == '0' ? '✅' : '❌' }} {{steps.steps.chromatic.outputs.errorCount == '0' ? 'All tests passed!' : 'Tests failed' }}                 
+                  | Test Results | ${{ steps.chromatic.outputs.errorCount }} == '0' ? '✅' : '❌' ${{steps.chromatic.outputs.errorCount }}  == '0' ? 'All tests passed!' : 'Tests failed'                 
                   
             - name: Run lint
               run: npm run lint
