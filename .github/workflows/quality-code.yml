@@ -1,0 +1,22 @@
+
+name: Quality code check
+
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+
+jobs:
+    install:
+        uses: ./install.yml
+
+    quality-check:
+        runs-on: ubuntu-latest
+        needs: install
+        steps:
+            -   name: Test
+                run : npm test
+
+            -   name: Lint
+                run: npm run lint
