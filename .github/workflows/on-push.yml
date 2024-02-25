@@ -45,16 +45,20 @@ jobs:
                 echo "| Component Count | ${{ steps.chromatic.outputs.componentCount }} |" >> $GITHUB_STEP_SUMMARY
                 echo "| Component Changes | ${{ steps.chromatic.outputs.changeCount }} |" >> $GITHUB_STEP_SUMMARY
                 echo "| Failed test | ${{ steps.chromatic.outputs.errorCount }} /${{ steps.chromatic.outputs.testCount }} |" >> $GITHUB_STEP_SUMMARY
+
+            - name: Read Summary
+              run: echo "::set-output name=summary::$(cat $GITHUB_STEP_SUMMARY)"
+            
             - name: Add Chromatic review link to pull request
- 
               if: always()
               uses: unsplash/comment-on-pr@v1.3.0
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                 msg: |
-                  **Chromatic Review Summary:**
-                  $(cat $GITHUB_STEP_SUMMARY)
+                  **Chromatic Review Summary:** 
+                  ${{ steps.chromatic.outputs.summary }}
+  
 
                 
                   
