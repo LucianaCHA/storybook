@@ -37,6 +37,7 @@ jobs:
 
 
             - name: Publish Summary
+              id: summary
               run: echo -e "## Chromatic Summary\n\n| Results |\n| --- | --- |\n| Build Results | [Link to chromatic build](${{ steps.chromatic.outputs.url }}) |\n| Storybook Preview | [${{ steps.chromatic.outputs.storybookUrl }}](${{ steps.chromatic.outputs.storybookUrl }}) |\n| Component Count | ${{ steps.chromatic.outputs.componentCount }} |\n| Component Changes | ${{ steps.chromatic.outputs.changeCount }} |\n| Failed test | ${{ steps.chromatic.outputs.errorCount }} /${{ steps.chromatic.outputs.testCount }} |" >> $GITHUB_STEP_SUMMARY
 
             - name: Add Chromatic review link to pull request
@@ -51,7 +52,7 @@ jobs:
                 # Component changes: ${{ steps.chromatic.outputs.changeCount }}
                 # Failed tests: ${{ steps.chromatic.outputs.errorCount }} / ${{ steps.chromatic.outputs.testCount }}.
                 msg: |
-                  ${{ steps.GITHUB_STEP_SUMMARY}}
+                  ${{ steps.summary.outputs.summary }}
                 
 
                 
