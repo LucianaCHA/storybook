@@ -39,8 +39,10 @@ jobs:
               id: message
               run: |
                 if [[ ${{steps.chromatic.outputs.errorCount }} == '0' ]]; then
+                  echo result = "" >> $GITHUB_ENV
                   echo message= "All tests passed! 🎉" >> $GITHUB_ENV
                 else
+                  echo result = ${{steps.chromatic.outputs.errorCount }} >> $GITHUB_ENV
                   echo message="Tests failed 🚨" >> $GITHUB_ENV
                 fi
 
@@ -58,8 +60,7 @@ jobs:
                   | Storybook Preview | [Link to preview](${{ steps.chromatic.outputs.storybookUrl }}) |
                   | Component Count | ${{ steps.chromatic.outputs.componentCount }} |
                   | Component Changes | ${{ steps.chromatic.outputs.changeCount }} |
-                  | Test Results | ${{ steps.chromatic.outputs.errorCount }} ${{env.message}} |
-
+                  | Test Results | ${{env.result}} ${{env.message}} |
                   
             - name: Run lint
               run: npm run lint
