@@ -42,8 +42,15 @@ jobs:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                 msg: |
-                  "## Chromatic Summary\n\n| Results |\n| --- | --- |\n| Build Results | [Link to chromatic build](${{ steps.chromatic.outputs.url }}) |\n| Storybook Preview | [${{ steps.chromatic.outputs.storybookUrl }}](${{ steps.chromatic.outputs.storybookUrl }}) |\n| Component Count | ${{ steps.chromatic.outputs.componentCount }} |\n| Component Changes | ${{ steps.chromatic.outputs.changeCount }} |\n| Failed test | ${{ steps.chromatic.outputs.errorCount }} /${{ steps.chromatic.outputs.testCount }} |"
-
+                  ## Chromatic Summary
+                  
+                  | Results | |
+                  | --- | --- |
+                  | Build Results | [Link to chromatic build](${{ steps.chromatic.outputs.url }}) |
+                  | Storybook Preview | [${{ steps.chromatic.outputs.storybookUrl }}](${{ steps.chromatic.outputs.storybookUrl }}) |
+                  | Component Count | ${{ steps.chromatic.outputs.componentCount }} |
+                  | Component Changes | ${{ steps.chromatic.outputs.changeCount }} |
+                  | Failed test | ${{ steps.chromatic.outputs.errorCount }} /${{ steps.chromatic.outputs.testCount }} |
                 
 
                 
