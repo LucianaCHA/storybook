@@ -42,26 +42,23 @@ jobs:
                   message= "All tests passed! 🎉"
                 else
                   message="Tests failed 🚨"
-                fi
-                echo "message=$message" 
+                fi >> $GITHUB_ENV
 
             - name: Add Chromatic review link to pull request
               if: always()
               uses: unsplash/comment-on-pr@v1.3.0
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                
+              with:                
                 msg: |
-                  ## Chromatic Summary
-                  
+                  ## Chromatic Summary                  
                   | Results | |
                   | --- | --- |
                   | Build Results | [Link to chromatic build](${{ steps.chromatic.outputs.url }}) |
                   | Storybook Preview | [Link to preview](${{ steps.chromatic.outputs.storybookUrl }}) |
                   | Component Count | ${{ steps.chromatic.outputs.componentCount }} |
                   | Component Changes | ${{ steps.chromatic.outputs.changeCount }} |
-                  | Test Results | ${{ steps.chromatic.outputs.errorCount }} ${{steps.message}}
+                  | Test Results | ${{ steps.chromatic.outputs.errorCount }} ${{env.message}} |
 
                   
             - name: Run lint
