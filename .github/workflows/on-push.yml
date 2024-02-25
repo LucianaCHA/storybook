@@ -47,13 +47,10 @@ jobs:
                   | Results | |
                   | --- | --- |
                   | Build Results | [Link to chromatic build](${{ steps.chromatic.outputs.url }}) |
-                  | Storybook Preview | [${{ steps.chromatic.outputs.storybookUrl }}](${{ steps.chromatic.outputs.storybookUrl }}) |
+                  | Storybook Preview | [Link to preview](${{ steps.chromatic.outputs.storybookUrl }}) |
                   | Component Count | ${{ steps.chromatic.outputs.componentCount }} |
                   | Component Changes | ${{ steps.chromatic.outputs.changeCount }} |
-                  | Failed test | ${{ steps.chromatic.outputs.errorCount }} /${{ steps.chromatic.outputs.testCount }} |
-                
-
-                
+                  | Test Results | {{ steps.steps.chromatic.outputs.errorCount == '0' ? '✅' : '❌' }} {{steps.steps.chromatic.outputs.errorCount == '0' ? 'All tests passed!' : 'Tests failed' }}                 
                   
             - name: Run lint
               run: npm run lint
