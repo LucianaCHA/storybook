@@ -35,20 +35,23 @@ jobs:
               with:
                 projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN}}
 
+            - name: Custom message
+              id: message
+              run: |
+                if [[ ${{steps.chromatic.outputs.errorCount }} == '0' ]]; then
+                  message= "All tests passed! 🎉"
+                else
+                  message="Tests failed 🚨"
+                fi
+                echo "message=$message" 
+
             - name: Add Chromatic review link to pull request
-              if: always()             
+              if: always()
               uses: unsplash/comment-on-pr@v1.3.0
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                run: |
-                  if [[ ${{ steps.chromatic.outputs.errorCount }} == 0 ]] ; then
-                    emoji="✅"
-                    message="All tests passed!"
-                  else
-                    emoji="❌"
-                    message="Tests failed"
-                  fi
-                with:
+              with:
+                
                 msg: |
                   ## Chromatic Summary
                   
@@ -58,7 +61,8 @@ jobs:
                   | Storybook Preview | [Link to preview](${{ steps.chromatic.outputs.storybookUrl }}) |
                   | Component Count | ${{ steps.chromatic.outputs.componentCount }} |
                   | Component Changes | ${{ steps.chromatic.outputs.changeCount }} |
-                  | Test Results | ${{ steps.chromatic.outputs.errorCount }} $emoji $message |            
+                  | Test Results | ${{ steps.chromatic.outputs.errorCount }} ${{steps.message}}
+
                   
             - name: Run lint
               run: npm run lint
