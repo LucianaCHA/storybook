@@ -34,13 +34,17 @@ jobs:
               with:
                 projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN}}
 
-            - name: Capture chromatic outputs
-              id: chromatic-output
-              run: echo "::set-output name=chromatic-output::https://www.chromatic.com/builds/${{ steps.chromatic-publish.outputs }}"
-                        
-            - name: Check chromatic output
-              run: echo ${{ steps.chromatic-publish.outputs}}
-            
+
+            - name: Publish Summary
+              run: 
+                echo "| Results |" > $GITHUB_STEP_SUMMARY
+                echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
+                echo "| Build Results | [Link to chromatic build](${{ steps.chromatic.outputs.url }}) |" >> $GITHUB_STEP_SUMMARY
+                echo "| Storybook Preview | [${{ steps.chromatic.outputs.storybookUrl }}](${{ steps.chromatic.outputs.storybookUrl }}) |" >> $GITHUB_STEP_SUMMARY
+                echo "| Component Count | ${{ steps.chromatic.outputs.componentCount }} |" >> $GITHUB_STEP_SUMMARY
+                echo "| Component Changes | ${{ steps.chromatic.outputs.changeCount }} |" >> $GITHUB_STEP_SUMMARY
+                echo "| Failed test | ${{ steps.chromatic.outputs.errorCount }} /${{ steps.chromatic.outputs.testCount }} |" >> $GITHUB_STEP_SUMMARY
+                echo "| Build Time | ${{ steps.chromatic.outputs.buildTime }} |" >> $GITHUB_STEP_SUMMARY
             - name: Add Chromatic review link to pull request
  
               if: always()
@@ -49,7 +53,10 @@ jobs:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                 msg: |
-                  Chromatic review has been published. [View it here](${{ steps.chromatic-link.outputs.chromatic-output.url }})
+                  **Chromatic Review Summary:**
+                  $(cat $GITHUB_STEP_SUMMARY)
+
+                
                   
             - name: Run lint
               run: npm run lint
