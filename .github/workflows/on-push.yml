@@ -35,24 +35,15 @@ jobs:
               with:
                 projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN}}
 
-
-            - name: Publish Summary
-              id: summary
-              run: echo -e "## Chromatic Summary\n\n| Results |\n| --- | --- |\n| Build Results | [Link to chromatic build](${{ steps.chromatic.outputs.url }}) |\n| Storybook Preview | [${{ steps.chromatic.outputs.storybookUrl }}](${{ steps.chromatic.outputs.storybookUrl }}) |\n| Component Count | ${{ steps.chromatic.outputs.componentCount }} |\n| Component Changes | ${{ steps.chromatic.outputs.changeCount }} |\n| Failed test | ${{ steps.chromatic.outputs.errorCount }} /${{ steps.chromatic.outputs.testCount }} |" >> $GITHUB_STEP_SUMMARY
-
             - name: Add Chromatic review link to pull request
               if: always()
               uses: unsplash/comment-on-pr@v1.3.0
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                # Chromatic build results are available [here](${{ steps.chromatic.outputs.url }}).
-                # Storybook preview is available [here](${{ steps.chromatic.outputs.storybookUrl }}).
-                # Component count: ${{ steps.chromatic.outputs.componentCount }}
-                # Component changes: ${{ steps.chromatic.outputs.changeCount }}
-                # Failed tests: ${{ steps.chromatic.outputs.errorCount }} / ${{ steps.chromatic.outputs.testCount }}.
                 msg: |
-                  ${{ steps.summary.outputs.summary }}
+                  "## Chromatic Summary\n\n| Results |\n| --- | --- |\n| Build Results | [Link to chromatic build](${{ steps.chromatic.outputs.url }}) |\n| Storybook Preview | [${{ steps.chromatic.outputs.storybookUrl }}](${{ steps.chromatic.outputs.storybookUrl }}) |\n| Component Count | ${{ steps.chromatic.outputs.componentCount }} |\n| Component Changes | ${{ steps.chromatic.outputs.changeCount }} |\n| Failed test | ${{ steps.chromatic.outputs.errorCount }} /${{ steps.chromatic.outputs.testCount }} |"
+
                 
 
                 
